@@ -4,6 +4,8 @@ from django.urls import path
 #import 
 from crm.views.client.views import clientList, clientCreate,clientEdit,clientDelete
 from crm.views.sale.views import saleList, saleInicia,saleEdit,saleDelete,saleCreate,saleGetData,saleItemView,saleItemDelete,pdfPrint
+from crm.views.devolution.views import devolutionList
+
 
 app_name='crm'
 urlpatterns=[
@@ -22,4 +24,6 @@ urlpatterns=[
         path('sale/itemview',saleItemView,name='saleItemView'),
         path('sale/itemdelete/<int:pk>/',saleItemDelete,name='saleItemDelete'),
         path('sale/pdfprint/<int:pk>/',pdfPrint,name='pdfPrint'),
+
+        path('devolution/list',devolutionList,name='devolutionList'),
         ]
