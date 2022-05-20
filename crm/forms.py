@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from crm.models import Client,Sale
+from crm.models import Client,Sale,Devolution
 
 class clientForm(ModelForm):
     class Meta:
@@ -9,4 +9,9 @@ class clientForm(ModelForm):
 class saleForm(ModelForm):
     class Meta:
         model = Sale 
+        fields = '__all__'
+
+class devolutionForm(ModelForm):
+    class Meta:
+        model =Devolution 
         fields = '__all__'

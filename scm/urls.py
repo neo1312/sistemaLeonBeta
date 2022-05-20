@@ -3,7 +3,7 @@ from django.urls import path
 
 #import 
 from scm.views.provider.views import providerList, providerCreate,providerEdit,providerDelete
-from scm.views.purchase.views import purchaseList, purchaseInicia,purchaseEdit,purchaseDelete,purchaseCreate,purchaseGetData,purchaseItemView,purchaseItemDelete,purchaseOrder
+from scm.views.purchase.views import purchaseList, purchaseInicia,purchaseEdit,purchaseDelete,purchaseCreate,purchaseGetData,purchaseItemView,purchaseItemDelete,purchaseOrder,purchaseNew
 
 app_name='scm'
 urlpatterns=[
@@ -19,6 +19,7 @@ urlpatterns=[
 
 
         path('purchase/create',purchaseCreate,name='purchasecreate'),
+        path('purchase/new',purchaseNew,name='purchasenew'),
         path('purchase/getdata',purchaseGetData,name='purchaseGetData'),
         path('purchase/itemview',purchaseItemView,name='purchaseItemView'),
         path('purchase/itemdelete/<int:pk>/',purchaseItemDelete,name='purchaseItemDelete'),

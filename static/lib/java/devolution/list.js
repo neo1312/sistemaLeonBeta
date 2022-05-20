@@ -8,7 +8,7 @@ btnOrder.addEventListener('click',(e)=>{
 	createOrder()
 })
     const createOrder = ()=>{
-        let url = "/sale/inicia"
+        let url = "/devolution/inicia"
         fetch(url,{
             method:'POST',
             headers:{

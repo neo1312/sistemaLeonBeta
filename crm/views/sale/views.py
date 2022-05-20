@@ -13,10 +13,8 @@ from crm.forms import saleForm
 @csrf_exempt
 def saleInicia(request):
     if request.method == "POST":
-        data=json.loads(request.body)
-        tipo=(data[0])
         client=Client.objects.get(name='mostrador')
-        sale=Sale.objects.create(client=client,tipo=tipo)
+        sale=Sale.objects.create(client=client,)
         sale.save()
     return JsonResponse('Venta Registrada',safe=False)
 
@@ -25,10 +23,12 @@ def saleList(request):
             'sale_create':'/sale/create',
             'title' : 'Listado sales',
             'sales' : Sale.objects.all(),
-            'entity':'sales',
+            'entity':'Crear Nueva Venta',
             'url_create':'/sale/create',
             'url_js':'/static/lib/java/sale/list.js',
             'btnId':'btnOrderList',
+            'entityUrl':'/sale/new',
+            'home':'home',
             }
     return render(request, 'sale/list.html', data)
 
@@ -72,7 +72,7 @@ def saleCreate(request):
             'url_js':'/static/lib/java/sale/create.js',
             'items':items,
             'total':sale,
-            'returnList':'/sale/list'
+            'returnCreate':'/sale/new'
             }
     return render(request, 'sale/create.html',context)
 
@@ -143,6 +143,7 @@ def saleItemDelete(request,pk):
 @csrf_exempt
 def pdfPrint(request,pk):
     sale=Sale.objects.get(id=pk)
+
     items=sale.saleitem_set.all()
     data={
             "sale":sale,
@@ -164,3 +165,19 @@ def pdfPrint(request,pk):
     if pisa_status.err:
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+def saleNew(request):
+    data = {
+            'sale_create':'/sale/create',
+            'title' : 'Alta de ventas',
+            'entity':'lista de ventas',
+            'entityUrl':'/sale/list',
+            'url_create':'/sale/create',
+            'url_js':'/static/lib/java/sale/list.js',
+            'btnId':'btnOrderList',
+            'newBtn':'Venta',
+            'home':'home'
+            }
+    return render(request, 'sale/new.html', data)
+
+

@@ -25,10 +25,12 @@ def purchaseList(request):
             'purchase_create':'/purchase/create',
             'title' : 'Listado purchases',
             'purchases' : Purchase.objects.all(),
-            'entity':'purchases',
+            'entity':'Crear compra',
             'url_create':'/purchase/create',
             'url_js':'/static/lib/java/purchase/list.js',
             'btnId':'btnOrderList',
+            'entityUrl':'/purchase/new',
+            'home':'home'
             }
     return render(request, 'purchase/list.html', data)
 
@@ -71,7 +73,7 @@ def purchaseCreate(request):
             'url_js':'/static/lib/java/purchase/create.js',
             'items':items,
             'total':purchase,
-            'returnList':'/purchase/list'
+            'returnCreate':'/purchase/new'
             }
     return render(request, 'purchase/create.html',context)
 
@@ -136,4 +138,20 @@ def purchaseOrder(request,pk):
 
     response['Content-Disposition']='attachment; filename="productCost.csv"'
     return response
+
+def purchaseNew(request):
+    data = {
+            'purchase_create':'/purchase/create',
+            'title' : 'Alta de Compra',
+            'entity':'Lista de Compras',
+            'url_create':'/purchase/create',
+            'url_js':'/static/lib/java/purchase/list.js',
+            'btnId':'btnOrderList',
+            'entityUrl':'/purchase/list',
+            'home':'home',
+            'newBtn':'Compra'
+
+            }
+    return render(request, 'purchase/new.html', data)
+
 
